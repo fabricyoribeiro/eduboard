@@ -12,8 +12,11 @@ export default function Login() {
         <input type="email" name="email" id="email" className="bg-blue-50 rounded-md p-3 border-1 border-gray-400 outline-0" />
         <label htmlFor="">Senha</label>
         <input type="password" name="password" id="password" className="bg-blue-50 rounded-md p-3 border-1 border-gray-400 outline-0" />
+        {/* por enquanto é um link */}
         <button className="bg-blue-950 text-white rounded-md p-3 my-4">
-          Entrar
+          <Link href='/'>
+            Entrar
+          </Link>
         </button>
         <h2 className="mx-auto">Primeira vez? <Link href='/register' className="font-bold">Cadastre-se</Link></h2>
       </form>
