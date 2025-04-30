@@ -1,7 +1,14 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
+import { TrendingDown, TrendingUp } from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import {
   Card,
@@ -10,72 +17,83 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 
 const chartData = [
-  { range: '0–10%', students: 3 },
-  { range: '11–20%', students: 5 },
-  { range: '21–30%', students: 8 },
-  { range: '31–40%', students: 12 },
-  { range: '41–50%', students: 10 },
-  { range: '51–60%', students: 9 },
-  { range: '61–70%', students: 7 },
-  { range: '71–80%', students: 4 },
-  { range: '81–90%', students: 2 },
-  { range: '91–100%', students: 1 },
+  { student: "Alice", accuracy: 80 },
+  { student: "Bruno", accuracy: 66 },
+  { student: "Carlos", accuracy: 54 },
+  { student: "Daniela", accuracy: 43 },
+  { student: "Eduardo", accuracy: 42 },
+  { student: "Fernanda", accuracy: 39 },
+  { student: "Gustavo", accuracy: 32 },
+  { student: "Helena", accuracy: 22 },
+  { student: "Igor", accuracy: 16 },
+  { student: "Juliana", accuracy: 10 },
 ];
 
 const chartConfig = {
-  students: {
-    label: "Students",
+  accuracy: {
+    label: "Porcentagem de acertos: ",
     color: "#00f",
-    
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function BarChartComponent() {
   return (
-    <Card className="w-2xl ">
-      <CardHeader >
-        <CardTitle>Quantidade de alunos por faixa de acertos</CardTitle>
+    <Card className=" ">
+      <CardHeader>
+        <CardTitle>Ranking geral de acertos entre os alunos</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
-            accessibilityLayer
             data={chartData}
-            className="fill-blue-900"
+            layout="vertical"
             barCategoryGap={10}
-            margin={{
-              top: 30,
-            }}
+            margin={{ top: 30, left: 50 }}
+            className="fill-blue-900"
           >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="range"
+            <CartesianGrid horizontal={false} />
+
+            <YAxis
+              type="category"
+              dataKey="student"
               tickLine={false}
-              tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 6)}
+              tickMargin={10}
             />
+
+            <XAxis
+              type="number"
+              tickLine={false}
+              axisLine={false}
+              domain={[0, 100]}
+            />
+
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="students" fill="var(--color-desktop)" radius={8}>
+
+            <Bar
+              dataKey="accuracy"
+              fill="var(--color-desktop)"
+              radius={[0, 8, 8, 0]}
+            >
               <LabelList
-                position="top"
-                offset={12}
+                dataKey="accuracy"
+                position="right"
+                offset={8}
                 className="fill-foreground"
                 fontSize={12}
-                
               />
             </Bar>
           </BarChart>
@@ -83,10 +101,14 @@ export function BarChartComponent() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          A maioria dos alunos tem media de acertos entre 31% e 40% <TrendingUp className="h-4 w-4" />
+          Maior desempenho: Alice (80%)
+          <TrendingUp className="h-4 w-4" />
         </div>
-
+        <div className="flex gap-2 font-medium leading-none">
+          Menor desempenho: Juliana (10%)
+          <TrendingDown className="h-4 w-4" />
+        </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

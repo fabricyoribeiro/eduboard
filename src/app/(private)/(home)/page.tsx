@@ -2,7 +2,7 @@ import Image from "next/image";
 import InfoCard from "../../../components/InfoCard";
 import {Button} from '@/components/ui/button'
 import PieChartComponent from "../../../components/PieChartComponent";
-import { BarChartComponent } from "../../../components/BarChartComponent";
+import { ColumnChartComponent } from "../../../components/ColumnChartComponent";
 
 export default function HomeScreen() {
   return (
@@ -16,7 +16,7 @@ export default function HomeScreen() {
 
       <div className="flex flex-wrap mt-10 xl:justify-between ">
         <PieChartComponent correct_percentage={80} incorrect_percentage={20} />
-        <BarChartComponent />
+        <ColumnChartComponent />
       </div>
     </div>
   );
