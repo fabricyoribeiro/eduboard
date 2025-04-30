@@ -18,7 +18,7 @@ export default function InfoCard({title, value}) {
     //   </div>
     // </div>
 
-    <div className="w-72 rounded-lg overflow-hidden border-2 border-blue-950/50">
+    <div className="w-64 rounded-lg overflow-hidden border-2 border-blue-950/50">
     <div className="bg-blue-950 p-2 text-white  flex justify-center items-center">
       {title}
     </div>

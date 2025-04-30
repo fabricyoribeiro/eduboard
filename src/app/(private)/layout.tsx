@@ -66,7 +66,7 @@ export default function PrivateLayout({
           </Link>
 
         </aside>
-        <div className="w-full bg-blue-50 px-6 py-10">
+        <div className="w-full bg-blue-50 py-10">
           {children}
         </div>
       </main>
