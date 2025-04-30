@@ -43,7 +43,7 @@ export function BarChartComponent() {
   return (
     <Card className="w-2xl ">
       <CardHeader >
-        <CardTitle>Quantidade de alunos por faiza de acertos</CardTitle>
+        <CardTitle>Quantidade de alunos por faixa de acertos</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
