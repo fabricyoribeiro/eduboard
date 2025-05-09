@@ -19,9 +19,9 @@ export default function PrivateLayout({
 
   return (
     <div>
-      <header className="bg-blue-950 h-[8vh] ">
-        <div className="max-w-10/12 flex justify-between items-center px-6 h-full w-full mx-auto">
-          <span className="text-white">EduBoard</span>
+      <header className="bg-blue-950 h-[8vh] text-lg">
+        <div className="w-full flex justify-between items-center px-8 h-full mx-auto">
+          <span className="text-white text-2xl font-bold ">EduBoard</span>
           <div className="flex items-center gap-4 text-white">
             <span>Professor Gericlécio</span>
             <CircleUserRound size={32} color="#FFF" />
@@ -29,7 +29,7 @@ export default function PrivateLayout({
         </div>
       </header>
 
-      <main className="flex min-h-[92vh] text-blue-950">
+      <main className="flex min-h-[92vh] text-blue-950 text-lg">
         <Sidebar />
         <div className="w-full bg-blue-50 py-10">{children}</div>
       </main>

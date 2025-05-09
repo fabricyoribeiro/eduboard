@@ -13,7 +13,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-3/12 bg-blue-200 text-blue-950">
+    <aside className="w-[30rem] bg-blue-200 text-blue-950">
       <Link
         href="/"
         className={`w-full h-20 flex items-center gap-2 px-8 hover:bg-blue-100 hover:cursor-pointer ${

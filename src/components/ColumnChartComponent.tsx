@@ -69,7 +69,7 @@ export function ColumnChartComponent() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="students" fill="var(--color-desktop)" radius={8}>
+            <Bar dataKey="students" fill="var(--color-desktop)" radius={4}>
               <LabelList
                 position="top"
                 offset={12}

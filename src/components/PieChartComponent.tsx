@@ -45,7 +45,7 @@ export default function PieChartComponent({correct_percentage, incorrect_percent
   return (
     <Card className="flex flex-col w-96 h-fit">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Grafico de Pizza</CardTitle>
+        <CardTitle>Taxa média de acertos e erros no jogo</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
