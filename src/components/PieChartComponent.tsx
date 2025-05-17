@@ -43,7 +43,7 @@ export default function PieChartComponent({correct_percentage, incorrect_percent
   } satisfies ChartConfig;
 
   return (
-    <Card className="flex flex-col w-96 h-fit">
+    <Card className="flex flex-col max-w-96 w-full h-fit">
       <CardHeader className="items-center pb-0">
         <CardTitle>Taxa média de acertos e erros no jogo</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

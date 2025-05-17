@@ -41,7 +41,7 @@ const chartConfig = {
 
 export function ColumnChartComponent() {
   return (
-    <Card className="w-2xl ">
+    <Card className="max-w-xl w-full ">
       <CardHeader >
         <CardTitle>Quantidade de alunos por faixa de acertos</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

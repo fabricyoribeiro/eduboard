@@ -1,6 +1,29 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+.table {
+  border: 1px solid gray;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+  /* overflow: hidden; */
+}
+
+.table > tr, td, th {
+  border: 1px solid gray;
+  text-align: left;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  /* border-radius: 10px; */
+
+}
+
+.table > tr:nth-child(odd){
+  background-color: #BEDBFF;
+
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
