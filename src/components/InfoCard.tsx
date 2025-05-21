@@ -27,7 +27,7 @@ export default function InfoCard({ title, value }: InfoCardProps) {
       <div className="bg-blue-950 p-2 text-white  flex justify-center items-center">
         {title}
       </div>
-      <div className="bg-blue-50  p-2 flex items-center justify-center font-bold text-blue-950">
+      <div className="  p-2 flex items-center justify-center font-bold text-blue-950">
         {value}
       </div>
     </div>

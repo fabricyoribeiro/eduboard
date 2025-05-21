@@ -24,32 +24,19 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import clsx from "clsx";
 
-const chartData = [
-  { student: "Alice", accuracy: 80 },
-  { student: "Bruno", accuracy: 66 },
-  { student: "Carlos", accuracy: 54 },
-  { student: "Daniela", accuracy: 43 },
-  { student: "Eduardo", accuracy: 42 },
-  { student: "Fernanda", accuracy: 39 },
-  { student: "Gustavo", accuracy: 32 },
-  { student: "Helena", accuracy: 22 },
-  { student: "Igor", accuracy: 16 },
-  { student: "Juliana", accuracy: 10 },
-];
-
-const chartConfig = {
-  accuracy: {
-    label: "Porcentagem de acertos: ",
-    color: "#00f",
-  },
-} satisfies ChartConfig;
-
-export function BarChartComponent() {
+export function BarChartComponent({ smallChart, chartData, title, type }) {
+  const chartConfig = {
+    value: {
+      label: type === "studentsPerformance" ? "Porcentagem de acertos" : type === "errorsPerLetter" ? "Porcentagem de erros" : "",
+      color: "#00f",
+    },
+  } satisfies ChartConfig;
   return (
-    <Card className=" ">
+    <Card className={clsx("w-full", { "lg:max-w-lg": smallChart })}>
       <CardHeader>
-        <CardTitle>Ranking geral de acertos entre os alunos</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
@@ -57,15 +44,16 @@ export function BarChartComponent() {
           <BarChart
             data={chartData}
             layout="vertical"
-            barCategoryGap={10}
-            margin={{ top: 30, left: 50 }}
-            className="fill-blue-900"
+            barCategoryGap={smallChart ? 25 : 10}
+            barSize={smallChart ? 15 : null}
+            margin={{ top: 0, left: 0 }}
+            className="fill-blue-900 "
           >
             <CartesianGrid horizontal={false} />
 
             <YAxis
               type="category"
-              dataKey="student"
+              dataKey="label"
               tickLine={false}
               axisLine={false}
               tickMargin={10}
@@ -84,12 +72,12 @@ export function BarChartComponent() {
             />
 
             <Bar
-              dataKey="accuracy"
+              dataKey="value"
               fill="var(--color-desktop)"
               radius={[0, 8, 8, 0]}
             >
               <LabelList
-                dataKey="accuracy"
+                dataKey="value"
                 position="right"
                 offset={8}
                 className="fill-foreground"
@@ -100,14 +88,32 @@ export function BarChartComponent() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Maior desempenho: Alice (80%)
-          <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="flex gap-2 font-medium leading-none">
-          Menor desempenho: Juliana (10%)
-          <TrendingDown className="h-4 w-4" />
-        </div>
+        {type === "errorsPerLetter" && (
+          <div className="flex gap-2 font-medium leading-none">
+            Maior dificuldade: Letra A (80%)
+            <TrendingUp className="h-4 w-4" />
+          </div>
+        )}
+
+        {type === "errorsPerWords" && (
+          <div className="flex gap-2 font-medium leading-none">
+            Maior dificuldade: Palavra Toalha (80%)
+            <TrendingUp className="h-4 w-4" />
+          </div>
+        )}
+
+        {type === "studentsPerformance" && (
+          <>
+            <div className="flex gap-2 font-medium leading-none">
+              Maior desempenho: Alice (80%)
+              <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="flex gap-2 font-medium leading-none">
+              Menor desempenho: Juliana (10%)
+              <TrendingDown className="h-4 w-4" />
+            </div>
+          </>
+        )}
       </CardFooter>
     </Card>
   );

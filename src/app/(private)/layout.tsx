@@ -31,7 +31,7 @@ export default function PrivateLayout({
 
       <main className="flex min-h-[92vh] text-blue-950 text-base">
         <Sidebar />
-        <div className="w-full bg-blue-50 py-6">{children}</div>
+        <div className="w-full bg-blue-50/40 py-6">{children}</div>
       </main>
     </div>
   );
