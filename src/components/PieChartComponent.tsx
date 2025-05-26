@@ -16,18 +16,23 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 
-interface PieChartComponentProps {
+interface PieChartData {
   correct_percentage: number
   incorrect_percentage: number
 }
+interface PieChartComponentProps {
+  pieChartData: PieChartData
+  title: string
+}
 
 
-
-export default function PieChartComponent({correct_percentage, incorrect_percentage}: PieChartComponentProps) {
+export default function PieChartComponent({pieChartData, title}: PieChartComponentProps) {
   
+  console.log(pieChartData)
+
   const chartData = [
-    { label: "incorrect_percentage", percentage: incorrect_percentage, fill: "#ff0000" },
-    { label: "correct_percentage", percentage: correct_percentage, fill: "#2947a8" },
+    { label: "incorrect_percentage", percentage: pieChartData.incorrect_percentage, fill: "#ff0000" },
+    { label: "correct_percentage", percentage: pieChartData.correct_percentage, fill: "#2947a8" },
   ];
 
   const chartConfig = {
@@ -45,7 +50,7 @@ export default function PieChartComponent({correct_percentage, incorrect_percent
   return (
     <Card className="flex flex-col max-w-96 w-full h-fit">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Taxa média de acertos e erros no jogo</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">

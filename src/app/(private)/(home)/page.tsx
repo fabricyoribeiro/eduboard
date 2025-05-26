@@ -7,8 +7,13 @@ import { BarChartMultipleComponent } from "../../../components/BarChartMultipleC
 
 export default async function HomeScreen() {
   
-  const response = await fetch('http://127.0.0.1:5000/analytics/indicators')
-  const infoCardsData = await response.json()  
+  const indicatorsResponse = await fetch('http://127.0.0.1:5000/analytics/indicators')
+  const infoCardsData = await indicatorsResponse.json()  
+  
+  const hitMissResponse = await fetch('http://127.0.0.1:5000/analytics/overall/hit-miss-rate')
+  const pieChartData = await hitMissResponse.json()  
+
+  console.log(pieChartData)
   
   const chartData = [
     {
@@ -44,7 +49,7 @@ export default async function HomeScreen() {
       </div>
 
       <div className="flex max-lg:flex-wrap  mt-10 xl:justify-around ">
-        <PieChartComponent correct_percentage={80} incorrect_percentage={20} />
+        <PieChartComponent pieChartData={pieChartData}  title='Percentual geral de acertos e erros no jogo'/>
         <ColumnChartComponent />
       </div>
       <div className="flex max-lg:flex-wrap  mt-10 xl:justify-between ">
