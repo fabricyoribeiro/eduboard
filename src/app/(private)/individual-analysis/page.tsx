@@ -3,7 +3,7 @@ import IndividualAnalysis from '@/components/IndividualAnalysis';
 
 export default async function Page() {
   
-  const response = await fetch('https://eduboard-api.onrender.com/actor/all')
+  const response = await fetch('http://127.0.0.1:5000/actor/all')
   const users = await response.json()
 
   console.log('users', users)

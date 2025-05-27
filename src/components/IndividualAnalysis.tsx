@@ -119,8 +119,10 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
 
           <div className="flex flex-wrap justify-around my-8 gap-y-4">
             <PieChartComponent
-              correct_percentage={30}
-              incorrect_percentage={70}
+              // correct_percentage={30}
+              // incorrect_percentage={70}
+              pieChartData={{correct_percentage: 40, incorrect_percentage: 60}}
+              title="Percentual de erros e acertos"
             />
             <LineChartComponent />
             <BarChartComponent
@@ -150,8 +152,8 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
+            {users.map((user, index) => (
+              <tr key={index}>
                 <td>{user.username}</td>
                 <td>{user.name}</td>
                 <td>{user.age}</td>

@@ -29,18 +29,28 @@ import clsx from "clsx";
 export function BarChartComponent({ smallChart, chartData, title, type }) {
   const chartConfig = {
     value: {
-      label: type === "studentsPerformance" ? "Porcentagem de acertos" : type === "errorsPerLetter" ? "Porcentagem de erros" : "",
+      label:
+        type === "studentsPerformance"
+          ? "Porcentagem de acertos"
+          : type === "errorsPerLetter"
+          ? "Porcentagem de erros"
+          : "",
       color: "#00f",
     },
   } satisfies ChartConfig;
   return (
-    <Card className={clsx("w-full", { "lg:max-w-lg": smallChart })}>
+    <Card className={clsx("w-full  ", { "lg:max-w-lg": smallChart })}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer
+
+          style={smallChart ? null : { height: `${chartData.length * 60}px` }}
+          // className={`h-[${chartData.length * 40}px]`}
+          config={chartConfig}
+        >
           <BarChart
             data={chartData}
             layout="vertical"
@@ -56,7 +66,7 @@ export function BarChartComponent({ smallChart, chartData, title, type }) {
               dataKey="label"
               tickLine={false}
               axisLine={false}
-              tickMargin={10}
+              tickMargin={0}
             />
 
             <XAxis
