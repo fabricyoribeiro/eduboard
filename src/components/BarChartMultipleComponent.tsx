@@ -17,8 +17,19 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { title } from "process";
 
-export function BarChartMultipleComponent({ chartData }) {
+interface ChartData {
+  subject: string;
+  incorrect_percentage: number;
+  correct_percentage: number;
+}
+interface ChartDataProps {
+  chartData: ChartData;
+  title: string;
+}
+
+export function BarChartMultipleComponent({ chartData, title }: ChartDataProps) {
   const chartConfig = {
     incorrect_percentage: {
       label: "Erros",
@@ -32,44 +43,26 @@ export function BarChartMultipleComponent({ chartData }) {
   return (
     <Card className="max-w-[470px] w-full h-fit">
       <CardHeader>
-        <CardTitle>Percentual de acertos e erros por conteúdo</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData} >
+          <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="subject"
               tickLine={false}
               tickMargin={10}
-              
               height={40}
               axisLine={false}
-              tick={(props) => {
-                const { x, y, payload } = props;
-                const value = payload.value;
-                const firstLine = value.slice(0, 7);
-                const secondLine = value.slice(7);
-                return (
-                  <text x={x} y={y + 5} textAnchor="middle" fill="#888">
-                    <tspan x={x} dy="0">
-                      {firstLine}
-                    </tspan>
-                    {secondLine && (
-                      <tspan x={x} dy="1.2em">
-                        {secondLine}
-                      </tspan>
-                    )}
-                  </text>
-                );
-              }}
+              tickFormatter={(value) => `${value.slice(0, 20)}`}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="correct_percentage" fill="#1c398e " radius={4}  />
+            <Bar dataKey="correct_percentage" fill="#1c398e " radius={4} />
             <Bar dataKey="incorrect_percentage" fill="#F00" radius={4} />
           </BarChart>
         </ChartContainer>

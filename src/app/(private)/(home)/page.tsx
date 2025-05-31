@@ -13,25 +13,28 @@ export default async function HomeScreen() {
   const hitMissResponse = await fetch('http://127.0.0.1:5000/analytics/overall/hit-miss-rate')
   const pieChartData = await hitMissResponse.json()  
 
-  console.log(pieChartData)
+  const hitMissBySubjectResponse = await fetch('http://127.0.0.1:5000/analytics/overall/hit-miss-by-subject')
+  const hitMissBySubjectData = await hitMissBySubjectResponse.json()  
   
-  const chartData = [
-    {
-      subject: "Dactilologia",
-      incorrect_percentage: 60,
-      correct_percentage: 40,
-    },
-    {
-      subject: "Sinalização Lexical",
-      incorrect_percentage: 45,
-      correct_percentage: 55,
-    },
-    {
-      subject: "Léxico da Libras",
-      incorrect_percentage: 30,
-      correct_percentage: 70,
-    },
-  ];
+  console.log(hitMissBySubjectData)
+  
+  // const chartData = [
+  //   {
+  //     subject: "Dactilologia",
+  //     incorrect_percentage: 60,
+  //     correct_percentage: 40,
+  //   },
+  //   {
+  //     subject: "Sinalização Lexical",
+  //     incorrect_percentage: 45,
+  //     correct_percentage: 55,
+  //   },
+  //   {
+  //     subject: "Léxico da Libras",
+  //     incorrect_percentage: 30,
+  //     correct_percentage: 70,
+  //   },
+  // ];
 
   // const infoCardsData = [
   //   { title: "Alunos cadastrados", value: 22 },
@@ -53,7 +56,7 @@ export default async function HomeScreen() {
         <ColumnChartComponent />
       </div>
       <div className="flex max-lg:flex-wrap  mt-10 xl:justify-between ">
-        <BarChartMultipleComponent chartData={chartData} />
+        <BarChartMultipleComponent chartData={hitMissBySubjectData} title="Percentual de acertos e erros por conteúdo" />
       </div>
     </div>
   );
