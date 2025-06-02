@@ -19,7 +19,7 @@ export default function PrivateLayout({
 
   return (
     <div>
-      <header className="bg-blue-950 h-[8vh] text-base">
+      <header className="bg-blue-950 h-[8vh] text-base  sticky top-0 z-10">
         <div className="w-full flex justify-between items-center px-8 h-full mx-auto">
           <span className="text-white text-2xl font-bold ">EduBoard</span>
           <div className="flex items-center gap-4 text-white">
