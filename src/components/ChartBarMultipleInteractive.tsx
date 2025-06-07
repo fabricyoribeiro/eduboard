@@ -19,13 +19,14 @@ import {
 } from "@/components/ui/chart"
 import { useState } from "react"
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "./ui/select"
+import HitsMissesLabel from "./HitsMissesLabel"
 
 export const description = "A multiple bar chart"
 
 const chartConfig = {
   hits: {
     label: "Acertos",
-    color: "blue",
+    color: "#2947a8",
   },
   misses: {
     label: "Erros",
@@ -45,7 +46,12 @@ interface ChartDataList {
   levelThree: ChartDataItem[];
 }
 
-export function ChartBarMultipleInteractive({chartDataList}: ChartDataList) {
+interface ChartBarMultipleInteractiveProps {
+  chartDataList: ChartDataList;
+}
+
+
+export function ChartBarMultipleInteractive({ chartDataList }: ChartBarMultipleInteractiveProps) {
 
   const [chartData, setChartData] = useState<any[]>(chartDataList.levelOne)
 
@@ -54,20 +60,33 @@ export function ChartBarMultipleInteractive({chartDataList}: ChartDataList) {
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>Acertos e erros por desafio e nivel</CardTitle>
-          <Select onValueChange={(value) => { setChartData(value) }}>
+          <Select onValueChange={(value) => {
+            switch (value) {
+              case "levelOne":
+                setChartData(chartDataList.levelOne)
+                break
+              case "levelTwo":
+                setChartData(chartDataList.levelTwo)
+                break
+              case "levelThree":
+                setChartData(chartDataList.levelThree)
+                break
+            }
+          }}>
             <SelectTrigger className="w-32">
-              <SelectValue placeholder='Nível' />
+              <SelectValue placeholder="Nível" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value={chartDataList.levelOne}>Nivel 1</SelectItem>
-              <SelectItem value={chartDataList.levelTwo}>Nivel 2</SelectItem>
-              <SelectItem value={chartDataList.levelThree}>Nivel 3</SelectItem>
+              <SelectItem value="levelOne">Nível 1</SelectItem>
+              <SelectItem value="levelTwo">Nível 2</SelectItem>
+              <SelectItem value="levelThree">Nível 3</SelectItem>
             </SelectContent>
           </Select>
 
-        </div>
-        <CardDescription>January - June 2024</CardDescription>
 
+        </div>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
+        <HitsMissesLabel />
 
       </CardHeader>
       <CardContent >
@@ -93,7 +112,6 @@ export function ChartBarMultipleInteractive({chartDataList}: ChartDataList) {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this object <TrendingUp className="h-4 w-4" />
         </div>
 
       </CardFooter>

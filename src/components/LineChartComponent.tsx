@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+
 const chartData = [
   { attempts: "Dia1", accuracy: 30},
   { attempts: "Dia 2", accuracy: 42 },

@@ -26,7 +26,19 @@ import {
 } from "@/components/ui/chart";
 import clsx from "clsx";
 
-export function BarChartComponent({ smallChart, chartData, title, type }) {
+interface ChartDataItem{
+  label: string
+  value: number
+}
+
+interface BarChartProps{
+  smallChart?: boolean
+  chartData: ChartDataItem[]
+  title: string
+  type: string
+}
+
+export function BarChartComponent({ smallChart, chartData, title, type }: BarChartProps) {
   const chartConfig = {
     value: {
       label:
@@ -47,7 +59,7 @@ export function BarChartComponent({ smallChart, chartData, title, type }) {
       <CardContent>
         <ChartContainer
 
-          style={smallChart ? null : { height: `${chartData.length * 60}px` }}
+          style={smallChart ? {} : { height: `${chartData.length * 60}px` }}
           // className={`h-[${chartData.length * 40}px]`}
           config={chartConfig}
         >
@@ -55,7 +67,7 @@ export function BarChartComponent({ smallChart, chartData, title, type }) {
             data={chartData}
             layout="vertical"
             barCategoryGap={smallChart ? 25 : 10}
-            barSize={smallChart ? 15 : null}
+            barSize={smallChart ? 15 : undefined}
             margin={{ top: 0, left: 0 }}
             className="fill-blue-900 "
           >
@@ -115,11 +127,11 @@ export function BarChartComponent({ smallChart, chartData, title, type }) {
         {type === "studentsPerformance" && (
           <>
             <div className="flex gap-2 font-medium leading-none">
-              Maior desempenho: Alice (80%)
+              Maior desempenho: Ana Luiza (67%)
               <TrendingUp className="h-4 w-4" />
             </div>
             <div className="flex gap-2 font-medium leading-none">
-              Menor desempenho: Juliana (10%)
+              Menor desempenho: João Silva (33%)
               <TrendingDown className="h-4 w-4" />
             </div>
           </>

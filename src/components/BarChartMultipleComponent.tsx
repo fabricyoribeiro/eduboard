@@ -18,6 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { title } from "process";
+import HitsMissesLabel from "./HitsMissesLabel";
 
 interface ChartData {
   subject: string;
@@ -25,7 +26,7 @@ interface ChartData {
   correct_percentage: number;
 }
 interface ChartDataProps {
-  chartData: ChartData;
+  chartData: ChartData[];
   title: string;
 }
 
@@ -43,8 +44,11 @@ export function BarChartMultipleComponent({ chartData, title }: ChartDataProps) 
   return (
     <Card className="max-w-[470px] w-full h-fit">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <div>
+          <CardTitle>{title}</CardTitle>
+          <HitsMissesLabel />
+        </div>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -69,11 +73,11 @@ export function BarChartMultipleComponent({ chartData, title }: ChartDataProps) 
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Maior taxa de errros: Nível 3 - Léxico de Libras
+          Maior taxa de errros: Letras em Libras
           <TrendingUp className="h-4 w-4" />
         </div>
         <div className="flex gap-2 font-medium leading-none">
-          Maior taxa de acertos: Nível 2 - Sinalização Lexical{" "}
+          Maior taxa de acertos: Frases com objetos em Libras
           <TrendingUp className="h-4 w-4" />
         </div>
       </CardFooter>
