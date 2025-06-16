@@ -18,14 +18,14 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-const chartData = [
-  { attempts: "Dia1", accuracy: 30},
-  { attempts: "Dia 2", accuracy: 42 },
-  { attempts: "Dia 3", accuracy: 66 },
-  { attempts: "Dia 4", accuracy: 70},
-  { attempts: "Dia 5", accuracy: 89 },
-  { attempts: "Dia 6", accuracy: 100 },
-]
+// const chartData = [
+//   { attempts: "Dia1", accuracy: 30},
+//   { attempts: "Dia 2", accuracy: 42 },
+//   { attempts: "Dia 3", accuracy: 66 },
+//   { attempts: "Dia 4", accuracy: 70},
+//   { attempts: "Dia 5", accuracy: 89 },
+//   { attempts: "Dia 6", accuracy: 100 },
+// ]
 
 const chartConfig = {
   accuracy: {
@@ -34,7 +34,15 @@ const chartConfig = {
   }
 } satisfies ChartConfig
 
-export function LineChartComponent() {
+interface ChartData{
+  attempts: string
+  accuracy: number
+}
+interface ChartDataProps{
+  chartData: ChartData[]
+}
+
+export function LineChartComponent({chartData}: ChartDataProps) {
   return (
     <Card className="max-w-xl w-full ">
       <CardHeader>

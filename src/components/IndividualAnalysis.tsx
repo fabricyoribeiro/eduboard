@@ -16,7 +16,7 @@ interface User {
 }
 
 export default function IndividualAnalysis({ users }: { users: User[] }) {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<any | null>(null);
 
   const multipleChartData = [
     {
@@ -176,7 +176,7 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
               pieChartData={selectedUser.hit_miss_rate}
               title="Percentual de erros e acertos"
             />
-            <LineChartComponent />
+            <LineChartComponent chartData={selectedUser.individual_evolution} />
             {/* <BarChartComponent
               smallChart
               type="errorsPerLetter"
@@ -184,9 +184,9 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
               chartData={barChartData}
             /> */}
 
-            <BarChartMultipleComponent chartData={multipleChartData} title="Percentual de acertos e erros por conteudo" />
+            <BarChartMultipleComponent chartData={selectedUser.hit_and_miss_by_subject} title="Percentual de acertos e erros por conteudo" />
 
-            <ChartBarMultipleInteractive chartDataList={barCharMultipleInteractiveData} />
+            <ChartBarMultipleInteractive chartDataList={selectedUser.hit_and_miss_by_object_level} />
 
             {/* <BarChartComponent
               smallChart
