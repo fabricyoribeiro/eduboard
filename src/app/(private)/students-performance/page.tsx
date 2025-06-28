@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { BarChartComponent } from "../../../components/BarChartComponent";
+import { BASE_URL } from "../../../constants/baseUrl";
 
 export default async function StudentsPerformance() {
 
-  const response = await fetch('http://127.0.0.1:5000/analytics/overall/ranking')
+  const response = await fetch(`${BASE_URL}/analytics/overall/ranking`)
   const barChartData = await response.json()
 
   return (
