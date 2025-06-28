@@ -8,6 +8,8 @@ import { LineChartComponent } from "./LineChartComponent";
 import { BarChartMultipleComponent } from "./BarChartMultipleComponent";
 import { BarChartComponent } from "./BarChartComponent";
 import { ChartBarMultipleInteractive } from "./ChartBarMultipleInteractive";
+import { BASE_URL } from "../constants/baseUrl";
+
 
 interface User {
   username: string;
@@ -16,94 +18,13 @@ interface User {
 }
 
 export default function IndividualAnalysis({ users }: { users: User[] }) {
+
   const [selectedUser, setSelectedUser] = useState<any | null>(null);
 
-  const multipleChartData = [
-    {
-      subject: "Nivel 1 Dactilologia",
-      incorrect_percentage: 60,
-      correct_percentage: 40,
-    },
-    {
-      subject: "Nivel 2 Sinalização Lexical",
-      incorrect_percentage: 45,
-      correct_percentage: 55,
-    },
-    {
-      subject: "Nivel 3 Léxico da Libras",
-      incorrect_percentage: 30,
-      correct_percentage: 70,
-    },
-  ];
-
-  // const barChartData = [
-  //   { label: "T", value: 80 },
-  //   { label: "B", value: 66 },
-  //   { label: "C", value: 54 },
-  //   { label: "D", value: 43 },
-  //   { label: "E", value: 42 },
-  //   { label: "F", value: 39 },
-  //   { label: "G", value: 32 },
-  //   { label: "J", value: 10 },
-  // ];
-
-  // const barChartData2 = [
-  //   { label: "Toalha", value: 80 },
-  //   { label: "Bolsa", value: 66 },
-  //   { label: "Cadeira", value: 54 },
-  //   { label: "Dado", value: 43 },
-  //   { label: "Espelho", value: 42 },
-  //   { label: "Folha", value: 39 },
-  //   { label: "Guarda Roupa", value: 32 },
-  //   { label: "Janela", value: 10 },
-  // ];
-
-  const barCharMultipleInteractiveData = {
-  levelOne: [
-    {
-      hits: 1,
-      misses: 2,
-      object: "Desafio 1"
-    },
-    {
-      hits: 1,
-      misses: 2,
-      object: "Desafio 2"
-    },
-    {
-      hits: 1,
-      misses: 1,
-      object: "Desafio 3"
-    }
-  ],
-  levelThree: [
-    {
-      hits: 2,
-      misses: 1,
-      object: "Desafio 1"
-    },
-    {
-      hits: 2,
-      misses: 1,
-      object: "Desafio 2"
-    }
-  ],
-  levelTwo: [
-    {
-      hits: 2,
-      misses: 1,
-      object: "Desafio 3"
-    },
-    {
-      hits: 2,
-      misses: 1,
-      object: "Desafio 4"
-    }
-  ]
-}
-
+  console.log(BASE_URL)
+   
   async function fetchUserAnalysis(username: string){
-    const response:any = await fetch(`http://127.0.0.1:5000/individual_analysis/${username}`)
+    const response:any = await fetch(`${BASE_URL}/individual_analysis/${username}`)
     const data = await response.json()
     setSelectedUser(data)
     console.log(data)
@@ -157,7 +78,7 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
           <div className="flex justify-between mt-4">
             <div className="flex flex-col items-center w-80 p-3 rounded-lg shadow-sm border bg-white">
               <span>Tempo médio por desafio</span>
-              <span>{selectedUser.individual_indicators.average_time.seconds}</span>
+              <span>{selectedUser.individual_indicators.average_time.seconds} segundos</span>
             </div>
             <div className="flex flex-col items-center w-80 p-3 rounded-lg shadow-sm border bg-white">
               <span>Assunto de maior dificuldade</span>
@@ -171,8 +92,6 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
 
           <div className="flex flex-wrap justify-around my-8 gap-y-4">
             <PieChartComponent
-              // correct_percentage={30}
-              // incorrect_percentage={70}
               pieChartData={selectedUser.hit_miss_rate}
               title="Percentual de erros e acertos"
             />

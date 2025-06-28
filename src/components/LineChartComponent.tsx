@@ -18,18 +18,10 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-// const chartData = [
-//   { attempts: "Dia1", accuracy: 30},
-//   { attempts: "Dia 2", accuracy: 42 },
-//   { attempts: "Dia 3", accuracy: 66 },
-//   { attempts: "Dia 4", accuracy: 70},
-//   { attempts: "Dia 5", accuracy: 89 },
-//   { attempts: "Dia 6", accuracy: 100 },
-// ]
 
 const chartConfig = {
   accuracy: {
-    label: "accuracy",
+    label: "percentual",
     color: "#19197d",
   }
 } satisfies ChartConfig
@@ -97,12 +89,10 @@ export function LineChartComponent({chartData}: ChartDataProps) {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
+        {/* <div className="flex gap-2 font-medium leading-none">
           Trending up by 5.2% this attempts <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 attemptss
-        </div>
+        </div> */}
+
       </CardFooter>
     </Card>
   )
