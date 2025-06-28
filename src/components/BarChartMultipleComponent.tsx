@@ -33,29 +33,31 @@ interface ChartDataProps {
 export function BarChartMultipleComponent({ chartData, title }: ChartDataProps) {
   console.log(chartData)
 
-  function findExtremes(data) {
-    let highestCorrect = { correct_percentage: 0 };
-    let highestIncorrect = { incorrect_percentage: 0 };
-    
-    data.forEach(item => {
-        // Check for highest correct percentage
-        if (item.correct_percentage > highestCorrect.correct_percentage) {
-            highestCorrect = item;
-        }
-        
-        // Check for highest incorrect percentage
-        if (item.incorrect_percentage > highestIncorrect.incorrect_percentage) {
-            highestIncorrect = item;
-        }
-    });
-    
-    return {
-        highestCorrect: highestCorrect.subject,
-        highestIncorrect: highestIncorrect.subject
-    };
-}
+  function findExtremes(data: ChartData[]) {
+    if (data.length === 0) {
+      return { highestCorrect: null, highestIncorrect: null };
+    }
 
-const results = findExtremes(chartData);
+    let highestCorrect = data[0];
+    let highestIncorrect = data[0];
+
+    data.forEach(item => {
+      if (item.correct_percentage > highestCorrect.correct_percentage) {
+        highestCorrect = item;
+      }
+      if (item.incorrect_percentage > highestIncorrect.incorrect_percentage) {
+        highestIncorrect = item;
+      }
+    });
+
+    return {
+      highestCorrect: highestCorrect.subject,
+      highestIncorrect: highestIncorrect.subject
+    };
+  }
+
+
+  const results = findExtremes(chartData);
 
   const chartConfig = {
     incorrect_percentage: {

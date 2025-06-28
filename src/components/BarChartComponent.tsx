@@ -53,7 +53,7 @@ export function BarChartComponent({ smallChart, chartData, title, type }: BarCha
     },
   } satisfies ChartConfig;
 
-  function findExtremes(data) {
+  function findExtremes(data: ChartDataItem[]) {
     if (data.length === 0) {
         return { highest: null, lower: null };
     }
