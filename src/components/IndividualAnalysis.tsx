@@ -54,14 +54,14 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
             </>
           ) : (
             <div className="flex flex-row items-center">
-              <input
+              {/* <input
                 type="text"
                 placeholder="Nome do aluno"
                 className="border-2 border-blue-950/40 py-2 px-6 rounded-l-full"
               />
               <button className="bg-blue-950 h-full px-4 rounded-r-full hover:cursor-pointer">
                 <Search size={24} color="#fff" />
-              </button>
+              </button> */}
             </div>
           )}
         </div>
@@ -77,15 +77,15 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
 
           <div className="flex justify-between mt-4">
             <div className="flex flex-col items-center w-80 p-3 rounded-lg shadow-sm border bg-white">
-              <span>Tempo médio por desafio</span>
+              <span className="font-semibold">Tempo médio por desafio</span>
               <span>{selectedUser.individual_indicators.average_time.seconds} segundos</span>
             </div>
             <div className="flex flex-col items-center w-80 p-3 rounded-lg shadow-sm border bg-white">
-              <span>Assunto de maior dificuldade</span>
+              <span className="font-semibold">Assunto de maior dificuldade</span>
               <span>{selectedUser.individual_indicators.most_difficult_subject}</span>
             </div>
             <div className="flex flex-col items-center w-80 p-3 rounded-lg shadow-sm border bg-white">
-              <span>Maior número de erros</span>
+              <span className="font-semibold">Maior número de erros</span>
               <span>{selectedUser.individual_indicators.maior_taxa_erros.value}</span>
             </div>
           </div>

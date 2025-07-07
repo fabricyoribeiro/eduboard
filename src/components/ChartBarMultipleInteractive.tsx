@@ -56,7 +56,7 @@ export function ChartBarMultipleInteractive({ chartDataList }: ChartBarMultipleI
   const [chartData, setChartData] = useState<any[]>(chartDataList.levelOne)
 
   return (
-    <Card className="w-full max-w-2xl justify-self-center  " >
+    <Card className="w-full max-w-xl justify-self-center  " >
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>Acertos e erros por desafio e nivel</CardTitle>

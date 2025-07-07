@@ -51,7 +51,7 @@ export default function PieChartComponent({pieChartData, title}: PieChartCompone
     <Card className="flex flex-col max-w-96 w-full h-fit">
       <CardHeader className="items-center pb-0">
         <CardTitle>{title}</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer

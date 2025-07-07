@@ -44,7 +44,7 @@ export function ColumnChartComponent() {
     <Card className="max-w-xl w-full ">
       <CardHeader >
         <CardTitle>Quantidade de alunos por faixa de acertos</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

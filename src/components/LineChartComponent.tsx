@@ -39,7 +39,7 @@ export function LineChartComponent({chartData}: ChartDataProps) {
     <Card className="max-w-xl w-full ">
       <CardHeader>
         <CardTitle>Evolução de acertos por dia</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

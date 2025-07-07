@@ -85,7 +85,7 @@ const result = findExtremes(chartData);
     <Card className={clsx("w-full  ", { "lg:max-w-lg": smallChart })}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer
