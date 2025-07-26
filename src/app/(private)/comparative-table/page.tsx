@@ -24,7 +24,7 @@ export default async function ComparativeTable() {
         </thead>
         <tbody>
           {
-            data?.map((item: any, index) => (
+            data?.map((item: any, index: any) => (
               <tr key={index} >
                 <td>{item.actor}</td>
                 <td>{item.accuracy}</td>
