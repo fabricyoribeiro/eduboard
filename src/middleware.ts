@@ -8,12 +8,12 @@ const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/login'
 
 export function middleware(request: NextRequest){
   //temporario apenas para nao funcionar o redirect
-  return NextResponse.next()
+  // return NextResponse.next()
 
 
   const path = request.nextUrl.pathname
   const publicRoute = publicRoutes.find(route => route.path === path)
-  const authToken = request.cookies.get('token')
+  const authToken = request.cookies.get('eduboard_token')
 
   if (!authToken && publicRoute){
     return NextResponse.next()
