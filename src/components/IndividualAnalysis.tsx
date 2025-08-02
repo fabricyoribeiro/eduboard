@@ -9,6 +9,7 @@ import { BarChartMultipleComponent } from "./BarChartMultipleComponent";
 import { BarChartComponent } from "./BarChartComponent";
 import { ChartBarMultipleInteractive } from "./ChartBarMultipleInteractive";
 import { BASE_URL } from "../constants/baseUrl";
+import { ClipLoader } from "react-spinners";
 
 
 interface User {
@@ -20,14 +21,13 @@ interface User {
 export default function IndividualAnalysis({ users }: { users: User[] }) {
 
   const [selectedUser, setSelectedUser] = useState<any | null>(null);
+  const [loadingUser, setLoadingUser] = useState<any | null>(null);
 
-  console.log(BASE_URL)
-   
-  async function fetchUserAnalysis(username: string){
-    const response:any = await fetch(`${BASE_URL}/individual_analysis/${username}`)
+  async function fetchUserAnalysis(username: string) {
+    const response: any = await fetch(`${BASE_URL}/individual_analysis/${username}`)
     const data = await response.json()
     setSelectedUser(data)
-    console.log(data)
+    setLoadingUser(null)
   }
 
   return (
@@ -54,14 +54,7 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
             </>
           ) : (
             <div className="flex flex-row items-center">
-              {/* <input
-                type="text"
-                placeholder="Nome do aluno"
-                className="border-2 border-blue-950/40 py-2 px-6 rounded-l-full"
-              />
-              <button className="bg-blue-950 h-full px-4 rounded-r-full hover:cursor-pointer">
-                <Search size={24} color="#fff" />
-              </button> */}
+
             </div>
           )}
         </div>
@@ -96,23 +89,11 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
               title="Percentual de erros e acertos"
             />
             <LineChartComponent chartData={selectedUser.individual_evolution} />
-            {/* <BarChartComponent
-              smallChart
-              type="errorsPerLetter"
-              title="Percentual de erros por letras aprendidas"
-              chartData={barChartData}
-            /> */}
 
             <BarChartMultipleComponent chartData={selectedUser.hit_and_miss_by_subject} title="Percentual de acertos e erros por conteudo" />
 
             <ChartBarMultipleInteractive chartDataList={selectedUser.hit_and_miss_by_object_level} />
 
-            {/* <BarChartComponent
-              smallChart
-              type="errorsPerWords"
-              title="Percentual de erros por palavras aprendidas"
-              chartData={barChartData2}
-            /> */}
 
           </div>
         </div>
@@ -134,19 +115,32 @@ export default function IndividualAnalysis({ users }: { users: User[] }) {
                 <td>{user.age}</td>
                 <td>
                   <button
-                    // onClick={() => setSelectedUser(user)}
-                    onClick={() => fetchUserAnalysis(user.username)}
+                    onClick={() => {
+                      setLoadingUser(user.username)
+                      fetchUserAnalysis(user.username)
+                    }
+                    }
+
                     className="flex items-center mx-auto bg-green-300 px-3 py-1 rounded-xl hover:cursor-pointer"
                   >
                     <span>Análise</span>
-                    <NotepadText size={20} />
+                    {
+                      loadingUser == user.username ? (
+                        <ClipLoader color="#fff" size={20} />
+
+                      ) : (
+                        <NotepadText size={20} />
+
+                      )
+                    }
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
