@@ -57,8 +57,9 @@ export default function Login() {
   return (
     <div className="bg-blue-200 p-8 flex flex-col w-2/3 rounded-xl border-1 border-gray-400">
       <UserCircle2 size={64} className="text-blue-950 mx-auto mb-4" />
+      <label htmlFor="email">Usuario: admin Senha: admin</label>
       <form className="flex flex-col gap-2 text-blue-950">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Usuario</label>
         <input
           type="email"
           name="email"
