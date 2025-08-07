@@ -87,9 +87,9 @@ export default function Login() {
           {submitting ? 'Entrando...' : 'Entrar'}
         </button>
 
-        <h2 className="mx-auto">
+        {/* <h2 className="mx-auto">
           Primeira vez? <Link href="/register" className="font-bold">Cadastre-se</Link>
-        </h2>
+        </h2> */}
       </form>
     </div>
   )
